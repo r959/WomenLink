@@ -1,0 +1,125 @@
+<!-- customer-dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdf2f8;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: #e60073;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .navbar h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .navbar button {
+      background-color: white;
+      color: #e60073;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 30px;
+      color: #e60073;
+    }
+    .business-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      margin: 0;
+      color: #e60073;
+    }
+    .card p {
+      margin: 10px 0;
+    }
+    .card button {
+      background-color: #ff66b2;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .card button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h1>Customer Dashboard</h1>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <h2>Explore Women-Owned Businesses</h2>
+  <div class="business-list" id="businessList"></div>
+
+  <script>
+    const businesses = [
+      { id: 'biz1', name: 'Sara’s Salon', description: 'Beauty and wellness services.' },
+      { id: 'biz2', name: 'Crafts by Anjali', description: 'Handmade crafts and décor.' },
+      { id: 'biz3', name: 'Yoga by Neha', description: 'Yoga classes and fitness training.' }
+    ];
+
+    const interestedBusinesses = [];
+
+    const businessListDiv = document.getElementById('businessList');
+
+    businesses.forEach(biz => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const isInterested = interestedBusinesses.includes(biz.id);
+
+      card.innerHTML = `
+        <h3>${biz.name}</h3>
+        <p>${biz.description}</p>
+        <button ${isInterested ? 'disabled' : ''} onclick="showInterest('${biz.id}', this)">
+          ${isInterested ? 'Interested!' : "I'm Interested"}
+        </button>
+      `;
+
+      businessListDiv.appendChild(card);
+    });
+
+    function showInterest(bizId, button) {
+      if (!interestedBusinesses.includes(bizId)) {
+        interestedBusinesses.push(bizId);
+        button.innerText = "Interested!";
+        button.disabled = true;
+      }
+    }
+
+    function logout() {
+      window.location.href = "choose-login.html"; // change as needed
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Users | Admin | WomenLink</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f2f7;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #ff4d94;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .main h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .user-section {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+    }
+
+    .user-section h2 {
+      color: #ff4d94;
+      margin-bottom: 15px;
+    }
+
+    .user-list div {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .user-list div:last-child {
+      border-bottom: none;
+    }
+
+    .user-list button {
+      background: #ff4d94;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .user-list button:hover {
+      background: #e60073;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Admin</h2>
+    <a href="admin-dashboard.html">Dashboard</a>
+    <a href="manage-users.html">Manage Users</a>
+    <a href="index.html">Logout</a>
+  </div>
+
+  <div class="main">
+    <h1>Manage Users</h1>
+
+    <div class="user-section">
+      <h2>Business Owners</h2>
+      <div class="user-list" id="ownerList">
+        <!-- JS will populate -->
+      </div>
+    </div>
+
+    <div class="user-section">
+      <h2>Customers</h2>
+      <div class="user-list" id="customerList">
+        <!-- JS will populate -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mock data — replace with API calls later
+    const owners = [
+      { id: 1, name: "Owner A" },
+      { id: 2, name: "Owner B" },
+    ];
+
+    const customers = [
+      { id: 101, name: "Customer 1" },
+      { id: 102, name: "Customer 2" },
+    ];
+
+    const ownerContainer = document.getElementById("ownerList");
+    const customerContainer = document.getElementById("customerList");
+
+    function renderUser(container, users, type) {
+      users.forEach(user => {
+        const div = document.createElement("div");
+        div.innerHTML = `
+          <span>${user.name}</span>
+          <button onclick="deleteUser('${type}', ${user.id})">Delete</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    renderUser(ownerContainer, owners, 'owner');
+    renderUser(customerContainer, customers, 'customer');
+
+    function deleteUser(type, id) {
+      const confirmDelete = confirm(`Are you sure you want to delete this ${type}?`);
+      if (!confirmDelete) return;
+
+      alert(`${type} with ID ${id} deleted (not yet connected to backend).`);
+      // You would call: fetch(`/api/${type}s/${id}`, { method: "DELETE" })
+      // Then remove from DOM or refresh the list
+    }
+  </script>
+
+</body>
+</html>

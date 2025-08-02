@@ -1,0 +1,118 @@
+<!-- business-dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Business Owner Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fdf2f8;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: #e60073;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .navbar h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .navbar button {
+      background-color: white;
+      color: #e60073;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 30px;
+      color: #e60073;
+    }
+    .container {
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #ff66b2;
+      color: white;
+      border: none;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+    .business-card {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h1>Business Owner Dashboard</h1>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="container">
+    <h2>Add Your Business</h2>
+
+    <form id="businessForm">
+      <input type="text" id="bizName" placeholder="Business Name" required />
+      <textarea id="bizDesc" placeholder="Business Description" required></textarea>
+      <button type="submit">Add Business</button>
+    </form>
+
+    <div id="businessInfo" class="business-card" style="display: none;"></div>
+  </div>
+
+  <script>
+    let interestCount = Math.floor(Math.random() * 20); // fake interest
+
+    document.getElementById('businessForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('bizName').value;
+      const desc = document.getElementById('bizDesc').value;
+
+      document.getElementById('businessInfo').style.display = 'block';
+      document.getElementById('businessInfo').innerHTML = `
+        <h3>${name}</h3>
+        <p>${desc}</p>
+        <p><strong>Interested Customers:</strong> ${interestCount}</p>
+      `;
+
+      this.reset();
+    });
+
+    function logout() {
+      window.location.href = "choose-login.html"; // change as needed
+    }
+  </script>
+
+</body>
+</html>

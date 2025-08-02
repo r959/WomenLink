@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WomenLink | Empowering Women</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff4d94;
+      --secondary: #ff99c8;
+      --light: #fff0f5;
+      --dark: #2e2e2e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #ffe6ff);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      padding: 20px 40px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      font-weight: 500;
+      color: var(--dark);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    nav button:hover {
+      color: var(--primary);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .welcome-text {
+      font-size: 2.8rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      animation: fadeInDown 1.2s ease-out;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 600px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1.4s ease-out;
+    }
+
+    .start-button {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 77, 148, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1.6s ease-out;
+    }
+
+    .start-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 77, 148, 0.5);
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .welcome-text {
+        font-size: 2rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">WomenLink</div>
+  </header>
+
+  <main>
+    <div class="welcome-text">Welcome to WomenLink</div>
+    <div class="subtitle">Connecting women with opportunities, empowerment, and support across the globe.</div>
+    <button class="start-button" onclick="window.location.href='choose-login.html'">Start</button>
+    
+  </main>
+
+  <footer>
+    &copy; 2025 WomenLink. All rights reserved.
+  </footer>
+
+  <script>
+    function navigate(role) {
+  if (role === 'admin') {
+    window.location.href = 'admin.html';
+  } else {
+    alert(`Redirecting to ${role} portal...`);
+    // You can redirect to customer.html or business.html if needed
+  }
+}
+
+
+    function startApp() {
+      alert("Starting the WomenLink application...");
+      // Add actual logic here
+    }
+  </script>
+
+</body>
+</html>

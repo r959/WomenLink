@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | WomenLink</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff4d94;
+      --secondary: #ff99c8;
+      --light: #fff;
+      --dark: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f2f7;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 1.6rem;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: white;
+      padding: 20px 30px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      color: var(--dark);
+    }
+
+    .logout-btn {
+      background-color: var(--secondary);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #e60073;
+    }
+
+    .content {
+      padding: 30px;
+      flex: 1;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .card p {
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Admin</h2>
+    <a href="#">Dashboard</a>
+    <a href=".//manage-users.html">Manage Users</a>
+    <a href="#">Reports</a>
+    <a href="#">Settings</a>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <h1>Welcome, Admin</h1>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="content">
+  <div class="card">
+    <h3>Business Overview</h3>
+    <p>Total Business Owners Registered: <strong id="totalOwners">0</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Business Owners & Customers</h3>
+    <div id="ownerList">
+      <!-- JS will populate this -->
+    </div>
+  </div>
+</div>
+
+<script>
+  // Fetch from backend
+  fetch('http://localhost:3000/api/owners')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("totalOwners").innerText = data.length;
+
+      const ownerListDiv = document.getElementById("ownerList");
+      data.forEach(owner => {
+        const div = document.createElement("div");
+        div.style.padding = "10px 0";
+        div.style.borderBottom = "1px solid #eee";
+        div.innerHTML = `<strong>${owner.name}</strong> is handling <strong>${owner.customers}</strong> customer(s).`;
+        ownerListDiv.appendChild(div);
+      });
+    })
+    .catch(err => {
+      console.error("Error fetching owners:", err);
+    });
+</script>
+
+
+
+</body>
+</html>
